@@ -5,3 +5,4 @@ config:
   env: dev
   site: rachelwhitton-composer
   id: ba2f1eed-8134-4001-b9d1-5321f0e36075
+  webroot: web
