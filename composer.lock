@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "747962c59deae7c9b27626762b9e555f",
+    "content-hash": "74c03354e48014c2ed9c4650f2c245ac",
     "packages": [
         {
             "name": "composer/installers",
@@ -361,7 +361,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/pantheon-advanced-page-cache.0.1.5.zip",
-                "reference": null,
+                "reference": "tags/0.1.5",
                 "shasum": null
             },
             "require": {
@@ -369,6 +369,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/pantheon-advanced-page-cache/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-cfm",
+            "version": "1.4.5",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-cfm/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-cfm.zip?timestamp=1467943964",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-cfm/"
         },
         {
             "name": "wpackagist-plugin/wp-native-php-sessions",
@@ -381,7 +401,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/wp-native-php-sessions.0.6.2.zip",
-                "reference": null,
+                "reference": "tags/0.6.2",
                 "shasum": null
             },
             "require": {
@@ -401,7 +421,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/theme/twentyseventeen.1.3.zip",
-                "reference": null,
+                "reference": "1.3",
                 "shasum": null
             },
             "require": {
