@@ -169,21 +169,6 @@ if ( isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ):
 	endif;
 
 endif;
-
-/*
-* Define wp-content directory outside of WordPress core directory
-*/
-define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content' );
-define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
-
-/**
- * WordPress Database Table prefix.
- *
- * You can have multiple installations in one database if you give each
- * a unique prefix. Only numbers, letters, and underscores please!
- */
-$table_prefix = getenv( 'DB_PREFIX' ) !== false ? getenv( 'DB_PREFIX' ) : 'wp_';
-
 if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
   // Redirect to https://$primary_domain/ in the Live environment
   if ($_ENV['PANTHEON_ENVIRONMENT'] === 'dev'){
@@ -229,6 +214,21 @@ if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
 // Configure Autoptimize cache dir and prefix
 define('AUTOPTIMIZE_CACHE_CHILD_DIR','/uploads/resources/');
 define('AUTOPTIMIZE_CACHEFILE_PREFIX','aggregated_');
+
+
+/*
+* Define wp-content directory outside of WordPress core directory
+*/
+define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content' );
+define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
+
+/**
+ * WordPress Database Table prefix.
+ *
+ * You can have multiple installations in one database if you give each
+ * a unique prefix. Only numbers, letters, and underscores please!
+ */
+$table_prefix = getenv( 'DB_PREFIX' ) !== false ? getenv( 'DB_PREFIX' ) : 'wp_';
 
 /* That's all, stop editing! Happy blogging. */
 
