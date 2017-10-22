@@ -45,8 +45,11 @@ terminus -n wp $TERMINUS_SITE.$TERMINUS_ENV -- user delete $ADMIN_USERNAME --yes
   terminus -n wp $TERMINUS_SITE.$TERMINUS_ENV -- user create $ADMIN_USERNAME no-reply@getpantheon.com --user_pass=$ADMIN_PASSWORD --role=administrator
 } &> /dev/null
 
+
 # Set Behat variables from environment variables
-export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"https://'$TERMINUS_ENV'-'$TERMINUS_SITE'.pantheonsite.io"},"PaulGibbs\\WordpressBehatExtension":{"site_url":"https://'$TERMINUS_ENV'-'$TERMINUS_SITE'.pantheonsite.io/wp","users":{"admin":{"username":"'$ADMIN_USERNAME'","password":"'$ADMIN_PASSWORD'"}},"wpcli":{"binary":"terminus -n wp '$TERMINUS_SITE'.'$TERMINUS_ENV' --"}}}}'
+# Use custom domains
+export CUSTOM_DOMAIN=( $(terminus domain:list $TERMINUS_SITE.$TERMINUS_ENV --field=id) )
+export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"https://'$CUSTOM_DOMAIN[-1]'"},"PaulGibbs\\WordpressBehatExtension":{"site_url":"https://'CUSTOM_DOMAIN[-1]'/wp","users":{"admin":{"username":"'$ADMIN_USERNAME'","password":"'$ADMIN_PASSWORD'"}},"wpcli":{"binary":"terminus -n wp '$TERMINUS_SITE'.'$TERMINUS_ENV' --"}}}}'
 export RELOCATED_WP_ADMIN=TRUE
 
 # Wake the multidev environment before running tests
