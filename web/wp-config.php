@@ -152,8 +152,8 @@ if ( isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ):
 		if ( isset( $_SERVER['HTTP_USER_AGENT_HTTPS'] ) && $_SERVER['HTTP_USER_AGENT_HTTPS'] == 'ON' ) {
 			$scheme = 'https';
 		}
-		define( 'WP_HOME', $scheme . '://' . $_SERVER['HTTP_HOST'] );
-		define( 'WP_SITEURL', $scheme . '://' . $_SERVER['HTTP_HOST'] . '/wp' );
+		// define( 'WP_HOME', $scheme . '://' . $_SERVER['HTTP_HOST'] );
+		// define( 'WP_SITEURL', $scheme . '://' . $_SERVER['HTTP_HOST'] . '/wp' );
 
 	}
 	// Don't show deprecations; useful under PHP 5.5
