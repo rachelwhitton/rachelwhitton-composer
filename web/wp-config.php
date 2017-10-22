@@ -184,8 +184,51 @@ define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
  */
 $table_prefix = getenv( 'DB_PREFIX' ) !== false ? getenv( 'DB_PREFIX' ) : 'wp_';
 
-/** Changes location where Autoptimize stores optimized files */
-define('AUTOPTIMIZE_CACHE_CHILD_DIR','/uploads/autoptimize/');
+if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
+  // Redirect to https://$primary_domain/ in the Live environment
+  if ($_ENV['PANTHEON_ENVIRONMENT'] === 'dev'){
+    /** Replace www.example.com with your registered domain name */
+    $primary_domain = 'dev.rachelwhitton.com';
+  }
+  elseif ($_ENV['PANTHEON_ENVIRONMENT'] === 'test') {
+    /** Replace test.example.com with domain added to the Test environment */
+    $primary_domain = 'test.rachelwhitton.com';
+  }
+  elseif ($_ENV['PANTHEON_ENVIRONMENT'] === 'live'){
+     /** Replace test.example.com with domain added to the Live environment */
+     $primary_domain = 'www.rachelwhitton.com';
+  }
+  else {
+    // Redirect to HTTPS on every Pantheon environment.
+    $primary_domain = $_SERVER['HTTP_HOST'];
+  }
+  $base_url = 'https://'. $primary_domain;
+  define('WP_SITEURL', $base_url);
+  define('WP_HOME', $base_url);
+  if ($_SERVER['HTTP_HOST'] != $primary_domain
+      || !isset($_SERVER['HTTP_X_SSL'])
+      || $_SERVER['HTTP_X_SSL'] != 'ON' ) {
+    header('HTTP/1.0 301 Moved Permanently');
+    header('Location: '. $base_url . $_SERVER['REQUEST_URI']);
+    exit();
+  }
+  /**
+   * For developers: WordPress debugging mode.
+   *
+   * Sets WP_DEBUG to true on if on a development environment.
+   *
+   */
+      if ( in_array( $_ENV['PANTHEON_ENVIRONMENT'], array( 'test', 'live' ) ) && ! defined( 'WP_DEBUG', false ) ) {
+        define('WP_DEBUG', false);
+      }
+      else
+        define( 'WP_DEBUG', true );
+
+
+}
+// Configure Autoptimize cache dir and prefix
+define('AUTOPTIMIZE_CACHE_CHILD_DIR','/uploads/resources/');
+define('AUTOPTIMIZE_CACHEFILE_PREFIX','aggregated_');
 
 /* That's all, stop editing! Happy blogging. */
 
