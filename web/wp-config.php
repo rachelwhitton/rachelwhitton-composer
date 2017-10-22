@@ -152,8 +152,8 @@ if ( isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ):
 		if ( isset( $_SERVER['HTTP_USER_AGENT_HTTPS'] ) && $_SERVER['HTTP_USER_AGENT_HTTPS'] == 'ON' ) {
 			$scheme = 'https';
 		}
-		// define( 'WP_HOME', $scheme . '://' . $_SERVER['HTTP_HOST'] );
-		// define( 'WP_SITEURL', $scheme . '://' . $_SERVER['HTTP_HOST'] . '/wp' );
+		 define( 'WP_HOME', $scheme . '://' . $_SERVER['HTTP_HOST'] );
+		 define( 'WP_SITEURL', $scheme . '://' . $_SERVER['HTTP_HOST'] . '/wp' );
 
 	}
 	// Don't show deprecations; useful under PHP 5.5
@@ -188,8 +188,6 @@ if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
     $primary_domain = $_SERVER['HTTP_HOST'];
   }
   $base_url = 'https://'. $primary_domain;
-  define('WP_SITEURL', $base_url);
-  define('WP_HOME', $base_url);
   if ($_SERVER['HTTP_HOST'] != $primary_domain
       || !isset($_SERVER['HTTP_X_SSL'])
       || $_SERVER['HTTP_X_SSL'] != 'ON' ) {
