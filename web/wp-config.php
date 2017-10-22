@@ -174,18 +174,22 @@ if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
   if ($_ENV['PANTHEON_ENVIRONMENT'] === 'dev'){
     /** Replace www.example.com with your registered domain name */
     $primary_domain = 'dev.rachelwhitton.com';
+		define( 'WP_DEBUG', true );
   }
   elseif ($_ENV['PANTHEON_ENVIRONMENT'] === 'test') {
     /** Replace test.example.com with domain added to the Test environment */
     $primary_domain = 'test.rachelwhitton.com';
+		define( 'WP_DEBUG', false );
   }
   elseif ($_ENV['PANTHEON_ENVIRONMENT'] === 'live'){
      /** Replace test.example.com with domain added to the Live environment */
      $primary_domain = 'www.rachelwhitton.com';
+		 define( 'WP_DEBUG', false );
   }
   else {
     // Redirect to HTTPS on every Pantheon environment.
     $primary_domain = $_SERVER['HTTP_HOST'];
+		define( 'WP_DEBUG', true );
   }
   $base_url = 'https://'. $primary_domain;
   if ($_SERVER['HTTP_HOST'] != $primary_domain
@@ -195,24 +199,10 @@ if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
     header('Location: '. $base_url . $_SERVER['REQUEST_URI']);
     exit();
   }
-  /**
-   * For developers: WordPress debugging mode.
-   *
-   * Sets WP_DEBUG to true on if on a development environment.
-   *
-   */
-      if ( in_array( $_ENV['PANTHEON_ENVIRONMENT'], array( 'test', 'live' ) ) && ! defined( 'WP_DEBUG', false ) ) {
-        define('WP_DEBUG', false);
-      }
-      else
-        define( 'WP_DEBUG', true );
-
-
 }
 // Configure Autoptimize cache dir and prefix
 define('AUTOPTIMIZE_CACHE_CHILD_DIR','/uploads/resources/');
 define('AUTOPTIMIZE_CACHEFILE_PREFIX','aggregated_');
-
 
 /*
 * Define wp-content directory outside of WordPress core directory
