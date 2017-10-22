@@ -51,13 +51,13 @@ if ( ! isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ):
 	 * Define site and home URLs
 	 */
 	// HTTP is still the default scheme for now.
-	$scheme = 'http';
+	$scheme = 'https';
 	// If we have detected that the end use is HTTPS, make sure we pass that
 	// through here, so <img> tags and the like don't generate mixed-mode
 	// content warnings.
-	// if ( isset( $_SERVER['HTTP_USER_AGENT_HTTPS'] ) && $_SERVER['HTTP_USER_AGENT_HTTPS'] == 'ON' ) {
-		// $scheme = 'https';
-	// }
+	if ( isset( $_SERVER['HTTP_USER_AGENT_HTTPS'] ) && $_SERVER['HTTP_USER_AGENT_HTTPS'] == 'ON' ) {
+		$scheme = 'https';
+	}
 	$site_url = getenv( 'WP_HOME' ) !== false ? getenv( 'WP_HOME' ) : $scheme . '://' . $_SERVER['HTTP_HOST'] . '/';
 	define( 'WP_HOME', $site_url );
 	define( 'WP_SITEURL', $site_url . 'wp/' );
@@ -145,15 +145,15 @@ if ( isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ):
 	/** A couple extra tweaks to help things run well on Pantheon. **/
 	if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 		// HTTP is still the default scheme for now.
-		// $scheme = 'http';
+		$scheme = 'https';
 		// If we have detected that the end use is HTTPS, make sure we pass that
 		// through here, so <img> tags and the like don't generate mixed-mode
 		// content warnings.
-		// if ( isset( $_SERVER['HTTP_USER_AGENT_HTTPS'] ) && $_SERVER['HTTP_USER_AGENT_HTTPS'] == 'ON' ) {
+		if ( isset( $_SERVER['HTTP_USER_AGENT_HTTPS'] ) && $_SERVER['HTTP_USER_AGENT_HTTPS'] == 'ON' ) {
 			$scheme = 'https';
-		// }
-		 define( 'WP_HOME', $scheme . '://' . $_SERVER['HTTP_HOST'] );
-		 define( 'WP_SITEURL', $scheme . '://' . $_SERVER['HTTP_HOST'] . '/wp' );
+		}
+		define( 'WP_HOME', $scheme . '://' . $_SERVER['HTTP_HOST'] );
+		define( 'WP_SITEURL', $scheme . '://' . $_SERVER['HTTP_HOST'] . '/wp' );
 
 	}
 	// Don't show deprecations; useful under PHP 5.5
@@ -169,6 +169,20 @@ if ( isset( $_ENV['PANTHEON_ENVIRONMENT'] ) ):
 	endif;
 
 endif;
+
+/*
+* Define wp-content directory outside of WordPress core directory
+*/
+define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content' );
+define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
+
+/**
+ * WordPress Database Table prefix.
+ *
+ * You can have multiple installations in one database if you give each
+ * a unique prefix. Only numbers, letters, and underscores please!
+ */
+$table_prefix = getenv( 'DB_PREFIX' ) !== false ? getenv( 'DB_PREFIX' ) : 'wp_';
 if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
   // Redirect to https://$primary_domain/ in the Live environment
   if ($_ENV['PANTHEON_ENVIRONMENT'] === 'dev'){
@@ -204,19 +218,6 @@ if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
 define('AUTOPTIMIZE_CACHE_CHILD_DIR','/uploads/resources/');
 define('AUTOPTIMIZE_CACHEFILE_PREFIX','aggregated_');
 
-/*
-* Define wp-content directory outside of WordPress core directory
-*/
-define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content' );
-define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
-
-/**
- * WordPress Database Table prefix.
- *
- * You can have multiple installations in one database if you give each
- * a unique prefix. Only numbers, letters, and underscores please!
- */
-$table_prefix = getenv( 'DB_PREFIX' ) !== false ? getenv( 'DB_PREFIX' ) : 'wp_';
 
 /* That's all, stop editing! Happy blogging. */
 
