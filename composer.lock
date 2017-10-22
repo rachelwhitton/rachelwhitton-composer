@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d26c68415807f77342ab618002890653",
+    "content-hash": "88424b6ad3778767a6ab8aed18d6d72e",
     "packages": [
         {
             "name": "composer/installers",
@@ -434,6 +434,26 @@
             "homepage": "https://wordpress.org/plugins/debug-bar/"
         },
         {
+            "name": "wpackagist-plugin/google-analytics-for-wordpress",
+            "version": "6.2.4",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/google-analytics-for-wordpress/",
+                "reference": "tags/6.2.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/google-analytics-for-wordpress.6.2.4.zip",
+                "reference": "tags/6.2.4",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/google-analytics-for-wordpress/"
+        },
+        {
             "name": "wpackagist-plugin/pantheon-advanced-page-cache",
             "version": "0.1.5",
             "source": {
@@ -494,6 +514,26 @@
             "homepage": "https://wordpress.org/plugins/solr-power/"
         },
         {
+            "name": "wpackagist-plugin/wordpress-seo",
+            "version": "5.6.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
+                "reference": "tags/5.6.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.5.6.1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wordpress-seo/"
+        },
+        {
             "name": "wpackagist-plugin/wp-cfm",
             "version": "1.4.5",
             "source": {
@@ -524,7 +564,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/wp-native-php-sessions.0.6.4.zip",
-                "reference": null,
+                "reference": "tags/0.6.4",
                 "shasum": null
             },
             "require": {
