@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee731cf946a9ccf272234ed448a7a723",
+    "content-hash": "694b29b5d6c695d1f45c0ff9a4398835",
     "packages": [
         {
             "name": "composer/installers",
@@ -216,16 +216,16 @@
         },
         {
             "name": "pantheon-systems/wordpress-composer",
-            "version": "4.8.2",
+            "version": "4.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pantheon-systems/wordpress-composer.git",
-                "reference": "5f0725b3cdbeeb53fa49e1afcfc8237cbfba3355"
+                "reference": "3c90fee285e7d9a9c9034be24d65445bef84c191"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pantheon-systems/wordpress-composer/zipball/5f0725b3cdbeeb53fa49e1afcfc8237cbfba3355",
-                "reference": "5f0725b3cdbeeb53fa49e1afcfc8237cbfba3355",
+                "url": "https://api.github.com/repos/pantheon-systems/wordpress-composer/zipball/3c90fee285e7d9a9c9034be24d65445bef84c191",
+                "reference": "3c90fee285e7d9a9c9034be24d65445bef84c191",
                 "shasum": ""
             },
             "require": {
@@ -243,10 +243,10 @@
             ],
             "description": "WordPress for Pantheon with a composer.json file.",
             "support": {
-                "source": "https://github.com/pantheon-systems/wordpress-composer/tree/4.8.2",
+                "source": "https://github.com/pantheon-systems/wordpress-composer/tree/4.8.3",
                 "issues": "https://github.com/pantheon-systems/wordpress-composer/issues"
             },
-            "time": "2017-09-19T23:18:39+00:00"
+            "time": "2017-10-31T18:09:38+00:00"
         },
         {
             "name": "roots/wp-password-bcrypt",
@@ -464,7 +464,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/lh-hsts.zip?timestamp=1501050816",
-                "reference": null,
+                "reference": "trunk",
                 "shasum": null
             },
             "require": {
