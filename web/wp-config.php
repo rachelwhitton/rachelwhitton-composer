@@ -190,6 +190,11 @@ if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
     $primary_domain = 'dev.rachelwhitton.com';
 		define( 'WP_DEBUG', true );
   }
+	elseif ($_ENV['PANTHEON_ENVIRONMENT'] === 'lando') {
+		/** Replace test.example.com with domain added to the Test environment */
+		$primary_domain = 'rachelwhitton-composer.lndo.site';
+		define( 'WP_DEBUG', true );
+	}
   elseif ($_ENV['PANTHEON_ENVIRONMENT'] === 'test') {
     /** Replace test.example.com with domain added to the Test environment */
     $primary_domain = 'test.rachelwhitton.com';
