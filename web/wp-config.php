@@ -219,9 +219,6 @@ if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
     exit();
   }
 }
-// Configure Autoptimize cache dir and prefix
-define('AUTOPTIMIZE_CACHE_CHILD_DIR','/uploads/resources/');
-define('AUTOPTIMIZE_CACHEFILE_PREFIX','aggregated_');
 
 
 /* That's all, stop editing! Happy blogging. */
