@@ -219,6 +219,14 @@ if (isset($_SERVER['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
     exit();
   }
 }
+
+// Force login for uploads dir 
+// Use php_sapi_name to check if the given request is a CLI command (avoid redirecting since that kills php proc before remote commands can run)
+if (($_SERVER['REQUEST_URI'] == '/wp-content/uploads') && (php_sapi_name() != "cli")) {
+	wp_login_url( $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] );
+  exit();
+}
+
 // Configure Autoptimize cache dir and prefix
 define('AUTOPTIMIZE_CACHE_CHILD_DIR','/uploads/resources/');
 define('AUTOPTIMIZE_CACHEFILE_PREFIX','aggregated_');
